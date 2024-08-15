@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<title>AngularJS Switch</title>
+</head>
+<body ng-controller="myController">
+    <form>
+        <button type="button" ng-click="setValue('Deepak')">Deepak</button>
+        <button type="button" ng-click="setValue('Aftab')">Aftab</button>
+        <button type="button" ng-click="setValue('Sarvesh')">Sarvesh</button>
+        <br>
+        <div ng-switch="selectedValue">
+            <input type="text" ng-switch-when="Deepak" ng-model="textFieldValue" readonly>
+            <input type="text" ng-switch-when="Aftab" ng-model="textFieldValue" readonly>
+            <input type="text" ng-switch-when="Sarvesh" ng-model="textFieldValue" readonly>
+            <input type="text" ng-switch-default placeholder="Click a button to set value">
+        </div>
+    </form>
+    <script>
+        angular.module('myApp', [])
+            .controller('myController', function ($scope) {
+                $scope.selectedValue = '';
+                $scope.textFieldValue = '';
+                $scope.setValue = function (value) {
+                    $scope.selectedValue = value;
+                    $scope.textFieldValue = value;
+                };
+            });
+    </script>
+</body>
+</html>

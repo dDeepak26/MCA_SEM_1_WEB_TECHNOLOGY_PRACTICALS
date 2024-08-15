@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS Form with Validation</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-messages.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            max-width: 400px;
+            margin: 50px auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px;
+            background-color: rgb(143, 143, 203);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: orange;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body ng-controller="myController">
+    <center><h1>Student Entry Form</h1></center>
+<form name="myForm" ng-submit="submitForm()" novalidate>
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" ng-model="formData.name" required />
+        <div ng-messages="myForm.name.$error" class="error-message">
+            <div ng-message="required">Name is required.</div>
+        </div>
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" ng-model="formData.email" required ng-pattern="/^[a-zA-Z0-9._%+-]+@aimsr\.edu\.in$/" />
+        <div ng-messages="myForm.email.$error" class="error-message">
+            <div ng-message="required">Email is required.</div>
+            <div ng-message="pattern">Invalid email address.</div>
+        </div>
+    </div>
+    <div>
+        <label for="mobile">Mobile Number:</label>
+        <input type="text" id="mobile" name="mobile" ng-model="formData.mobile" ng-pattern="/^\d{10}$/" required />
+        <div ng-messages="myForm.mobile.$error" class="error-message">
+            <div ng-message="required">Mobile number is required.</div>
+            <div ng-message="pattern">Invalid mobile number. It should be 10 digits.</div>
+        </div>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" ng-model="formData.password" required />
+        <div ng-messages="myForm.password.$error" class="error-message">
+            <div ng-message="required">Password is required.</div>
+        </div>
+    </div>
+    <button type="submit" ng-disabled="myForm.$invalid">Submit</button>
+</form>
+<script>
+    angular.module('myApp', ['ngMessages'])
+        .controller('myController', function ($scope) {
+            $scope.formData = {};
+            $scope.submitForm = function () {
+                if ($scope.myForm.$valid) {
+                    alert('Form submitted successfully!');
+                } else {
+                    alert('Form is invalid. Please check your entries.');
+                }
+            };
+        });
+</script>
+</body>
+</html>

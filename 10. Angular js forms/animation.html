@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AngularJS Animations</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: blue;
+      margin: 20px;
+      transition: all 0.5s ease;
+    }
+    .hidden {
+      opacity: 0;
+      height: 0;
+      width: 0;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
+</head>
+<body>
+  <h1>AngularJS Animations</h1>
+  <p>Deepak Durgam</p>
+<div ng-controller="myCtrl">
+  <label>
+    <h1>Click me to Hide Box</h1><input type="checkbox" ng-model="hideBox">
+  </label>
+  <div class="box" ng-class="{ 'hidden': hideBox }"></div>
+</div>
+<script>
+  angular.module('myApp', ['ngAnimate'])
+    .controller('myCtrl', function($scope) {
+      $scope.hideBox = false;
+    });
+</script>
+</body>
+</html>

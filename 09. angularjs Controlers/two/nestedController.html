@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AngularJS Controller</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+</head>
+<body ng-app="myNgApp">
+  <p style="font-size: small;">Deepak Durgam</p>
+  <div ng-controller="AIMSRStudent">
+    Parent Message: {{parentMessage}}
+    <div ng-controller="MBAStudent">
+      Parent Message: {{parentMessage}} </br>
+      Child Message: {{childMessage}}
+    </div>
+  </div>
+  <script>
+    var ngApp = angular.module('myNgApp', []);
+    ngApp.controller('AIMSRStudent', function ($scope) {
+      $scope.parentMessage = "This is an AIMSR Student";
+    });
+    ngApp.controller('MBAStudent', function ($scope) {
+      $scope.childMessage = "This is AIMSR MBA Student";
+    });
+  </script>
+</body>
+</html>

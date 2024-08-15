@@ -1,0 +1,3 @@
+This is some content in the file example.txt made on 26/10/2023
+ This is some new content inserted in example.txt by the appendFile function
+ This is some new content inserted in example.txt by the appendFile function

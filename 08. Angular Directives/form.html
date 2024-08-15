@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="myCtrl">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+  <style>
+    div {
+      width: 100%;
+      height: 50px;
+      display: block;
+      margin: 15px 0 0 10px;
+    }
+  </style>
+</head>
+<body ng-init="checked=true">
+  Enter Name: <input type="text" ng-model="name" /> <br />
+  Enter Age: <input type="text" ng-model="age" /> <br />
+  Your Name: <span data-ng-bind="name" ng-style="myStyle"></span><br />
+  Your Age: <span data-ng-bind="age" ng-style="myStyle"></span><br />
+  <button ng-click="validate()">Validate</button><br>
+  <button ng-click="submit()">Submit</button> <br>
+  IT background: <input type="checkbox" ng-model="checked" /> <br />
+  <div ng-show="checked">
+    Degree: <input ng-readonly="checked" value="MCA" />
+  </div>
+  <select ng-model="myVar">
+    <option value="Mumbai">Mumbai</option>
+    <option value="Navi Mumbai">Navi Mumbai</option>
+    <option value="Others">Others</option>
+  </select>
+  <div ng-switch="myVar">
+    <div ng-switch-when="Mumbai">
+      <h1>Mumbai</h1>
+      <p>Welcome to Mumbai.</p>
+    </div>
+    <div ng-switch-when="Navi Mumbai">
+      <h1>Navi Mumbai</h1>
+      <p>Welcome to Navi Mumbai.</p>
+    </div>
+    <div ng-switch-when="Others">
+      <h1>Others</h1>
+      <p>Welcome to others.</p>
+    </div>
+    <div ng-switch-default>
+      <h1>Switch</h1>
+      <p>Select Address from the dropdown to switch the Address.</p>
+    </div>
+  </div><br><br>
+  <div>
+    <input type="button" value="set color" ng-click="setColor()">
+    <input type="button" value="set background" ng-click="setBackground()">
+    <input type="button" value="clear" ng-click="clearStyle()">
+    <br/>
+  </div>
+  <script>
+    var app = angular.module("myApp", []);
+    app.controller("myCtrl", function($scope) {
+      $scope.myStyle = {};
+
+      $scope.validate = function() {
+        if (!$scope.name || !$scope.age) {
+          alert('Mandatory fields need to be filled');
+        }
+      };
+      $scope.submit = function() {
+        var confirmation = confirm('Do you want to go ahead and save this data?');
+        if (confirmation) {
+          alert('Data saved successfully!');
+        }
+      };
+      $scope.setColor = function() {
+        $scope.myStyle.color = 'red';
+      };
+      $scope.setBackground = function() {
+        $scope.myStyle['background-color'] = 'blue';
+        $scope.myStyle['color'] = 'white';
+      };
+      $scope.clearStyle = function() {
+        $scope.myStyle = {};
+      };
+    });
+  </script>
+</body>
+</html>

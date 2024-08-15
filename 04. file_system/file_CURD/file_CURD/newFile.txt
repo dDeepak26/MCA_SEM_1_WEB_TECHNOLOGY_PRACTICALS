@@ -1,0 +1,2 @@
+This is some content created by fileCreate.js file Deepak Durgam
+ This is some new content inserted in file.txt by the appendFile function

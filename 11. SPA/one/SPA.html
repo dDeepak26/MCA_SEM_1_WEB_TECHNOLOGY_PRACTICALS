@@ -1,0 +1,81 @@
+<!DOCTYPE html> 
+<html ng-app="myApp"> 
+<head> 
+    <script src= 
+"https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"> 
+    </script> 
+    <script src= 
+"https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"> 
+    </script> 
+  
+    <style> 
+        body { 
+            text-align: center; 
+            font-family: Arial, Helvetica, sans-serif; 
+        } 
+  
+        h1 { 
+            color: orange; 
+        } 
+    </style> 
+</head> 
+<body> 
+    <h1>AIMSR</h1>   
+    <script type="text/ng-template" id="first.html"> 
+        <h1>Name</h1> 
+        <h2 style="color:orange"> 
+            Welcome to AIMSR College MCA Course 
+        </h2> 
+        <p>Student Name: Deepak Durgam</p>
+        <h3>{{message}}</h3> 
+    </script> 
+    <script type="text/ng-template" id="second.html"> 
+        <h1>Location</h1> 
+        <h2 style="color:green"> 
+            Borivali west, Mumbai
+        </h2> 
+        <h3>{{message}}</h3> 
+    </script> 
+    <script type="text/ng-template" id="third.html"> 
+        <h1>Contact</h1> 
+        <h2 style="color:green"> 
+            Bhupendra Jogi: 12345678917
+        </h2> 
+        <h3>{{message}}</h3> 
+    </script> 
+    <a href="#/first">Name</a> 
+    <a href="#/second">Location</a> 
+    <a href="#/third">Contact</a> 
+    <div ng-view></div> 
+    <script> 
+        var app = angular.module('myApp', []); 
+        var app = angular.module('myApp', ['ngRoute']); 
+        app.config(function ($routeProvider) { 
+            $routeProvider 
+                .when('/', { 
+                    templateUrl: 'first.html', 
+                    controller: 'FirstController' 
+                }) 
+                .when('/second', { 
+                    templateUrl: 'second.html', 
+                    controller: 'SecondController' 
+                }) 
+                .when('/third', { 
+                    templateUrl: 'third.html', 
+                    controller: 'ThirdController' 
+                }) 
+                .otherwise({ redirectTo: '/' }); 
+        }); 
+        app.controller('FirstController', function ($scope) { 
+            $scope.message = 'Hello from FirstController'; 
+        }); 
+        app.controller('SecondController', function ($scope) { 
+            $scope.message = 'Hello from SecondController'; 
+        }); 
+        app.controller('ThirdController', function ($scope) { 
+            $scope.message = 'Hello from ThirdController'; 
+        }); 
+    </script> 
+</body> 
+  
+</html>

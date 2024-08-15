@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Array</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+</head>
+<body>
+<p style="font-size: small;">Deepak Durgam</p>
+<h4>Looping Array</h4>
+<script>
+var fruit = ['Mango', 'Apple', 'Banana'];
+var app = angular.module("app", []);
+app.controller("ArrayController", ["$scope", function ($scope) {
+$scope.bag = fruit;
+}]);
+</script>
+<div ng-app="app" ng-controller="ArrayController">
+<ul>
+<li ng-repeat=" fruit in bag ">{{fruit}}</li>
+</ul>
+</div>
+</body>
+</html>

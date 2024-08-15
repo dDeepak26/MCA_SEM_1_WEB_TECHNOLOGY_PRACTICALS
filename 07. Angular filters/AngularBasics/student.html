@@ -1,0 +1,74 @@
+<!-- <!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+    <script type="text/javascript">
+        var app = angular.module('MyApp', [])
+        app.controller('MyController', function ($scope, $window) {
+            $scope.Customers = [
+                { StudentName: "Deepak", StudentID: "06", Course: "MCA", CourseID: "123" },
+                { StudentName: "Aftab", StudentID: "37", Course: "MCA", CourseID: "123" },
+                { StudentName: "Servesh", StudentID: "45", Course: "MCA", CourseID: "123" },
+            ];
+
+            $scope.Add = function () {
+                var customer = {};
+                customer.StudentName = $scope.StudentName;
+                customer.StudentID = $scope.StudentID;
+                customer.Course = $scope.Course;
+                customer.CourseID = $scope.CourseID;
+                $scope.Customers.push(customer);
+
+                $scope.StudentName = "";
+                $scope.StudentID = "";
+                $scope.Course = "";
+                $scope.CourseID = "";
+            };
+
+            $scope.Remove = function (index) {
+                var name = $scope.Customers[index].StudentName;
+                if ($window.confirm("Do you want to delete: " + name)) {
+                    $scope.Customers.splice(index, 1);
+                }
+            }
+        });
+    </script>
+    <div ng-app="MyApp" ng-controller="MyController">
+        <h1>Deepak Durgam</h1>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th>Student Name</th>
+                <th>Student ID</th>
+                <th>Course</th>
+                <th>Course ID</th>
+                <th></th>
+            </tr>
+            <tbody ng-repeat="m in Customers">
+                <tr>
+                    <td>{{m.StudentName}}</td>
+                    <td>{{m.StudentID}}</td>
+                    <td>{{m.Course}}</td>
+                    <td>{{m.CourseID}}</td>
+                    <td><input type="button" ng-click="Remove($index)" value="Remove" /></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td><input type="text" ng-model="StudentName" /></td>
+                    <td><input type="text" ng-model="StudentID" /></td>
+                    <td><input type="text" ng-model="Course" /></td>
+                    <td><input type="text" ng-model="CourseID" /></td>
+                    <td><input type="button" ng-click="Add()" value="Add" /></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</body>
+
+</html>
